@@ -1,0 +1,110 @@
+<!-- /templates/my-form.html-->
+
+<html>
+    <head>
+        <!-- internal CSS within style block -->
+        <style>
+            body {
+                font-family: Helvetica, sans-serif;
+                color: rgb(35,73,119);
+                margin: 30px;
+            }
+            h1, h2 { text-align: center; }
+            h2 { font-style: italic; }
+            .lion {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 20%;
+            }
+        </style>
+        
+        <title>Vehicle Fleet Management System</title>
+    </head>
+    <body>
+        <h2>The College of New Jersey</h2>
+
+        <img class="lion" src="{{ url_for('static', filename='image/tcnj_lions.png') }}" alt="TCNJ">
+	    
+        <h1>Vehicle Fleet Management System</h1>
+        
+        <p>
+            Welcome to the TCNJ Vehicle Fleet Management System! 
+            Below are two forms, one for economic analysis of the fleet, and one for environmental analysis. <br>
+            To use the economic form, select which cost attribute you'd like to view from the dropdown, enter a whole number for budget, select ascending/descending result order, and select submit. <br>
+            To use the environmental form, enter a whole number for pollutant budget (amount of pollutant), select ascending/descending result order, and select submit.
+        </p>
+
+        <hr>
+        <br>
+
+	    <h3>Economic Analysis form</h3>
+        <form action="/economic-handler" method="POST">
+            <div>
+                <!-- select cost attribute from dropdown menu -->
+
+                <label for="attr">Select a cost attribute:</label><br>
+                
+                <!-- colnames sent from app.py containing attribute names from cost table -->
+                <SELECT name="attr">
+                    {% for col in colnames %}
+                        <OPTION value={{col[0]}}>{{col[0]}}</option>
+                    {% endfor %}
+                </SELECT>
+
+                <br><br>
+                
+                <!-- enter numerical value, will only see entries less than input value -->
+                Enter your budget (whole number integer, no commas):<br>
+                <input type="text" name="cost" required>
+                
+                <br><br>
+
+                <!-- view results with attribute value ascending/descending -->
+                Choose order to view cost values:<br>                
+                <!-- radio buttons -->
+                <input type="radio" id="asc" name="sort" value="ASC" required>
+                    <label for="html">Ascending (least expensive to most expensive)</label><br>
+                <input type="radio" id="desc" name="sort" value="DESC" required>
+                    <label for="css">Descending (most expensive to least expensive)</label><br>
+ 
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+
+        <br>
+        <hr>
+        <br>
+
+	    <h3>Environmental Analysis form</h3>
+        <form action="/environmental-handler" method="POST">
+            <div>
+		        <!-- enter numerical value, will only see entries less than input value -->
+                Enter your environmental budget (amount of pollutant) (whole number integer, no commas):<br>
+                <input type="text" name="amount" required>
+                
+                <br><br>
+
+                <!-- view results with attribute value ascending/descending -->
+                Choose order to view amount values:<br>                
+                <!-- radio buttons -->
+                <input type="radio" id="asc" name="sort" value="ASC" required>
+                    <label for="html">Ascending (least expensive to most expensive)</label><br>
+                <input type="radio" id="desc" name="sort" value="DESC" required>
+                    <label for="css">Descending (most expensive to least expensive)</label><br>
+            </div>
+                <input type="submit" value="Submit">
+        </form>
+    </body>
+
+    <!-- minimal styling -->
+    <style>
+        form {
+            margin: 1%;
+        }
+
+        div {
+            margin: 1% 0;
+        }
+    </style>
+</html>
