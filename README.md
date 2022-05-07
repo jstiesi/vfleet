@@ -50,7 +50,7 @@ Upon submitting this form you are shown a results page like below. A table is di
 ![environmental results](docs/usage_screenshots/app5.png)
 
 ## More information
-You can visit our wiki pages [here](https://github.com/TCNJ-degoodj/cab-project-02-4/wiki).  
+You can visit our wiki pages [here](https://github.com/jstiesi/vfleet/wiki).  
 You can view documentation and diagrams for different stages of this project [here](docs/).
 
 ## Contributors
